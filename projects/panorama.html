@@ -8,58 +8,70 @@
     <body>
         <h1>Panorama image creator</h1>
 
-        <img src="../img/zucchinifritters.jpeg" alt="Image of amazing Zucchini Fritters">
+        <img src="" alt="Image">
         <a href="../index.html">Back to home</a>
         
-        <h3>Description</h3>
+        <h3>Summary of the project</h3>
         <p>
-            Crisp, cheesy zucchini fritters are filled with delightfully 
-            savory flavors that get top marks from our community of home cooks. 
-            Learn how to make this down-home appetizer dish that's fast, 
-            filling, and family-friendly. 
+            This program was created as the final project for the Computer Vision class in Brno University of Technology.
+            In that class we learned about many different concepts that applied in computer vision and I had to
+            specialize in one of them and create an application. I chose Feature Recognition and to show what I had 
+            learnt I developed this panorama image creator.
         </p>
 
-        <h3>Ingredients</h3>
-        <ul>
-            <li>1 ½ pounds zucchini, grated</li>
-            <li>¾ teaspoon salt</li>
-            <li>¼ cup all-purpose flour</li>
-            <li>¼ cup grated Parmesan cheese</li>
-            <li>1 large egg, beaten</li>
-            <li>2 cloves garlic, minced</li>
-            <li>kosher salt and ground black pepper to taste</li>
-            <li>2 tablespoons olive oil</li>
-        </ul>
+        <p>
+            This whole project is developed in Python and it fundamentally uses the libraries OpenCV and Numpy for 
+            image handling. This program takes an ordered set of photos that from left to right share certain overlap,
+            and the program merges the images to form one panorama image. The program is executed from the command line
+            and takes as arguments the folder with the input photos and the folder where it will output the panorama.
+        </p>
 
-        <h3>Steps</h3>
-        <ol>
-            <li>
-                Toss zucchini and salt together in a large colander 
-                and place in sink to drain for 10 minutes.
-            </li>
+        <p>
+            The program follows these steps to create a panorama image from the inputs:
+            
+            <ol>
+                <li>Read the images from the input folder.</li>
 
-            <li>
-                Transfer zucchini to the center of a piece of cheesecloth; 
-                wrap cheesecloth around zucchini and squeeze to drain 
-                as much moisture as possible.
-            </li>
+                <li>Find the keypoints and their respective descriptors of each image.</li>
 
-            <li>
-                Mix flour, Parmesan cheese, egg, and garlic together 
-                in a large bowl. Stir in zucchini, then season with 
-                kosher salt and pepper.
-            </li>
+                <li>
+                    Look for the two best correspondences of each keypoint between pairs of consecutive images 
+                    using brute force algorithm. A ratio test is applied between the two best correspondences, if one
+                    is significantly better match than the other, that match is stored.
+                </li>
 
-            <li>
-                Heat olive oil in a large skillet over medium-high heat.
-            </li>
+                <li>
+                    Find the homography matrix between each pair of images using the correspondences just found, using
+                    RANSAC algorithm to get rid of outliers.
+                </li>
 
-            <li>
-                Working in batches, scoop tablespoonfuls of zucchini 
-                mixture into the hot skillet and fry until golden brown, 
-                about 2 minutes per side.
-            </li>
-        </ol>
+                <li>
+                    Transform all the homography matrices to be referenced to the center's image homography matrix.
+                </li>
+
+                <li>
+                    Find the max coordinates of the to be warped images using the homography matrices to create a blank
+                    canvas that can fit them all once they are merged.
+                </li>
+
+                <li>
+                    Warp each image, interpolating when necessary, according to their homography matrices and fit them
+                    in the blank canvas.
+                </li>
+            </ol>
+        </p>
+
+        <h3>Experience acquired</h3>
+        
+        <p>
+            By developing this program I have gotten comfortable with image manipulation, specially using OpenCV and
+            Numpy. My overall fluency with Python improved as well and I started to deal with efficiency in code. 
+        </p>
+
+        <p>
+            I have greatly interiorized important concepts in Computer Vision such as keypoints, descriptors, feature 
+            matching and homography matrices.
+        </p>
 
     </body>
 </html>
