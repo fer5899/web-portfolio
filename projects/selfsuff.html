@@ -6,60 +6,70 @@
     </head>
 
     <body>
-        <h1>Self-sufficiency calculator and report generator</h1>
+        <h1>Self-sufficiency calculator</h1>
 
-        <img src="../img/zucchinifritters.jpeg" alt="Image of amazing Zucchini Fritters">
+        <img src="" alt="Image">
         <a href="../index.html">Back to home</a>
         
-        <h3>Description</h3>
+        <h3>Summary of the project</h3>
         <p>
-            Crisp, cheesy zucchini fritters are filled with delightfully 
-            savory flavors that get top marks from our community of home cooks. 
-            Learn how to make this down-home appetizer dish that's fast, 
-            filling, and family-friendly. 
+            
+            During the first three months of my internship for Ubora Solar Solvers I managed
+            to develop from the ground up a local-running program in python that is now 
+            integrated in the workflow of the company's engineers.
+        
         </p>
 
-        <h3>Ingredients</h3>
-        <ul>
-            <li>1 ½ pounds zucchini, grated</li>
-            <li>¾ teaspoon salt</li>
-            <li>¼ cup all-purpose flour</li>
-            <li>¼ cup grated Parmesan cheese</li>
-            <li>1 large egg, beaten</li>
-            <li>2 cloves garlic, minced</li>
-            <li>kosher salt and ground black pepper to taste</li>
-            <li>2 tablespoons olive oil</li>
-        </ul>
+        <p>
 
-        <h3>Steps</h3>
-        <ol>
-            <li>
-                Toss zucchini and salt together in a large colander 
-                and place in sink to drain for 10 minutes.
-            </li>
+            The Self-sufficiency calculator is a program that dramatically speeds up and 
+            increases the accuracy of the estimation process needed to correctly size a solar 
+            panel installation based on the specific needs of each client. In summary, it first gathers
+            the needed hourly irradiation data based on the position of the target installation
+            contacting the PVGis API. It then processes that information with the parameters 
+            specified by the engineers to output a graph that shows the engineers the
+            self-sufficiency obtained with different arrays of panels and batteries. This graph
+            contains the needed information for the engineers to make the decision about the number
+            of panels and batteries that are optimal for a given installation based on its client's 
+            needs.
 
-            <li>
-                Transfer zucchini to the center of a piece of cheesecloth; 
-                wrap cheesecloth around zucchini and squeeze to drain 
-                as much moisture as possible.
-            </li>
+        </p>
 
-            <li>
-                Mix flour, Parmesan cheese, egg, and garlic together 
-                in a large bowl. Stir in zucchini, then season with 
-                kosher salt and pepper.
-            </li>
+        <p>
 
-            <li>
-                Heat olive oil in a large skillet over medium-high heat.
-            </li>
+            The frontend was designed using PyQt and it consisted of a simple formulary-like interface 
+            to input the needed parameters and of graphs made using the matplotlib library. In the
+            background, concurrent processes had to run to get the info from the API, to access excel
+            documents and to make time consuming iterative calculations.
 
-            <li>
-                Working in batches, scoop tablespoonfuls of zucchini 
-                mixture into the hot skillet and fry until golden brown, 
-                about 2 minutes per side.
-            </li>
-        </ol>
+        </p>
+        
+
+        <h3>Experience acquired with it</h3>
+        
+        <p>
+            As there was no other programmer in the company, it was up to me to analyze what 
+            was needed to optimize, to design the solution, to test it, and to implement it. This has
+            led me to get deeply familiarized with the product design process, to improve my soft-skills 
+            related to the communication with the client for the product design and to boost my
+            self-learning abilities.
+        
+        </p>
+
+        <p>
+
+            After this project, I have become quite fluent in Python programming and I have consolidated
+            many core concepts of object oriented programming as well as getting quite comfortable with
+            the use of concurrency to speed up processes.
+        
+        </p>
+        
+        <p>
+
+            I have learned how to create a frontend with Qt and have extracted some core ideas and
+            practices that could be translated to other languages or libraries.
+ 
+        </p>
 
     </body>
 </html>
