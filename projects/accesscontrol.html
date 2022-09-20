@@ -13,13 +13,53 @@
         
         <h3>Summary of the project</h3>
         <p>
-            Crisp, cheesy zucchini fritters are filled with delightfully 
-            savory flavors that get top marks from our community of home cooks. 
-            Learn how to make this down-home appetizer dish that's fast, 
-            filling, and family-friendly. 
+            This system was created as my end-of-degree project in the University of Málaga. The aim of this project was
+            to implement a system that would allow some doors with electric locks to be opened using registered RFID 
+            tags. The designed system keeps track of the registered RFID tags storing them as users in a MongoDB database. 
+            These users can be added, updated or deleted through a web interface designed and run in Node-RED. It also 
+            stores in the database all the attempted accesses, and these are also easily visualized through this web 
+            interface. Users can also be added and deleted directly at the reader if a card with administrator 
+            permissions is passed. A state machine was designed in Node-RED to implement that function.
+        </p>
+
+        <p>
+            The system is composed of two main elements, the central node and the reader node.
+
+            <ul>
+                <li>
+                    The central node is controlled by a Raspberry Pi in which the local MongoDB database and the control 
+                    logic in Node-RED runs. The Raspberry Pi is connected via serial port to a NodeMCU board which uses 
+                    to communicate to the reader nodes through ESP-NOW, which enables the system to work without the need 
+                    of Wifi connection access. The Raspberry Pi needs internet access, which can be provided via ethernet 
+                    cable if Wifi connection isn't available, in order to access the web interface.
+                </li>
+
+                <li>
+                    The reader node is controlled by a NodeMCU board which manages the readings from a RC522 RFID reader, 
+                    the visual feedback red and green leds and a relay used to open the electrical lock of the door to 
+                    access. The reader node communicates through ESP-NOW the readings to the central node and recieves 
+                    from it the corresponding response behavior. The system is built so up to 19 reader nodes can be 
+                    working at the same time, due to ESP-NOW limitations.
+                </li>
+            </ul>
         </p>
 
         <h3>Experience acquired</h3>
+
+        <ul>
+            <li>
+                During the project I got quite comfortable with Node-RED, and using this tool also led me to improve my
+                JavaScript programming skills.
+            </li>
+
+            <li>
+                I learned how to work with NoSQL databases like MongoDB.
+            </li>
+
+            <li>
+                Improved my Arduino coding skills by programming the NodeMCU boards.
+            </li>
+        </ul>
 
     </body>
 </html>
