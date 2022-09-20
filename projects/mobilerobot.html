@@ -13,13 +13,105 @@
         
         <h3>Summary of the project</h3>
         <p>
-            Crisp, cheesy zucchini fritters are filled with delightfully 
-            savory flavors that get top marks from our community of home cooks. 
-            Learn how to make this down-home appetizer dish that's fast, 
-            filling, and family-friendly. 
+            This project was created for the Robotics Lab class in the University of Málaga in collaboration with
+            two classmates. The aim of the project was to create a mobile robot capable of following preprogrammed 
+            trajectories with precision, and have it avoid obstacles and then return to the assigned trajectory by itself.
+            During the development of this project many concepts of control theory and robotics were put into practice.
         </p>
 
+        <p>
+            The mobile robot physically consisted of a couple motors with encoders that would control the movement, 
+            a free directional wheel, a couple sonar sensors for obstacle avoidance, three batteries as power source 
+            and an Arduino Mega as the central processor unit, all mounted onto a wooden board. Some pieces were designed
+            and 3D printed for attaching the motors and the sonar sensors. 
+        </p>
+
+        <p>
+            Matlab and Simulink were used to program and model the behavior of the robot and its parts. To achieve our
+            goal, we set several tasks that in time gradually increased the complexity of the robot and helped us achieve
+            our main goal. 
+        </p>
+
+        <ol>
+            <li>
+                For the first task our goal was to have the robot move proportionally to the signals of the sonar
+                sensors. That way, if there were no obstacles detected by either of the sensors, the robot would move 
+                straight, but if it detected any obstacles from any of the sides, the opposite wheel would turn slower
+                making the robot turn away from the obstacle. This control method was flawed and not useful, 
+                but it was easy to develop and got the robot mounted and moving.
+            </li>
+
+            <li>
+                Our next goal was to get the encoders working and using that movement feedback to model the model
+                the motors. For that, we had to create an Arduino code that read the encoder signals as interrupts and 
+                outputted that to our simulink model converted to distance and speed. Once we had the encoders working,
+                we programmed some simple movement of the motors with Simulink's signal builder, and using the recorded
+                real movement obtained with the encoders we modelled the motors using Simulink's system identification
+                tool. Having the motor models we could then simulate its behavior, greatly reducing testing times further
+                down the line.
+            </li>
+
+            <li>
+                With the motors modelled, the next task was to create a closed loop control in order to control the robot
+                by giving it a speed input for each of the individual wheels, instead of the previous PWM input, and to 
+                have it automatically adjust and compensate for any external perturbations. For that we designed and 
+                tested a PID controller for each motor that we added to the system's plant.
+            </li>
+
+            <li>
+                In order further advance towards our goal of a robot that follows a preprogrammed path, we had now to 
+                implement the odometry system and centralize the speed input. Using the distance between the wheels 
+                we applied inverse kinematics to transform the speed input from linear velocity and angular velocity of the 
+                robot to velocity of the left and right wheel. With that, we had centralized the speed input. Then, we 
+                applied direct kinematics to transform the two wheels velocities read by the encoders to linear and 
+                angular velocity. To finalize the Odometry, we decomposed the linear velocity into "x" and "y" velocities
+                and then, with the angular velocity, integrated them in time to obtain the position and orientation of 
+                the robot while it moved.
+            </li>
+
+            <li>
+                With the odometry implemented, we tried the system adding a PID that controlled the angle and a feedback
+                loop that kept it following the setpoint given. Now the robot could follow a straight line and keep 
+                its orientation.
+            </li>
+
+            <li>
+                The next goal was to have the robot follow a trajectory set by giving an array of XY points. For that,
+                we had to program a block in Matlab using the PurePursuit strategy. The idea of the block coded is that 
+                the robot constantly calculates the orientation that it needs to set itself to to get to the next point
+                by comparing the current position obtained with the odometry system and the target position. The
+                PurePursuit strategy comes into play when the robot is approaching the target point. To not have the 
+                robot spin in circles trying to exactly get to the specified point, and to give it some space to make a
+                safe turn, when the robot has gotten close enough to the target point, it switches to the next one.
+            </li>
+
+            <li>
+                Lastly, we created a state machine with Simulink's State Flow that would take over the normal PurePursuit
+                functions and deviate the trajectory away whenever an obstacle was detected on any of the sensors. Once 
+                the obstacle was no longer detected, the normal PurePursuit would try again to reach the next setpoint.
+            </li>
+
+        </ol>
+
         <h3>Experience acquired</h3>
+
+        <ul>
+            <li>
+                I practiced and deeply understood some core concepts of control theory and robotics, and their use,
+                by directly applying them to model the system that we had to later control.
+            </li>
+
+            <li>
+                I improved my teamwork skills as I struggled along with my colleagues to complete this non-trivial 
+                project.
+            </li>
+
+            <li>
+                I seriously improved my Simulink skills and Matlab programming abilities.
+            </li>
+
+        </ul>
+        
 
     </body>
 </html>
